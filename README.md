@@ -1,5 +1,7 @@
-# COMPSCI 235 Starter Repository for the Games WebApp Assignments
+# Starter Repository for the Games WebApp Assignments
 This is a starter repository for the games webapp assignments of CompSci 235 in Semester 2, 2023.
+
+Link to Original Repository: https://github.com/UoA-CS-Sindhwani-CS235-S2-2023/cs235-2023-gameswebapp-assignment-bdew314_jpir453_kshe912
 
 ## Description
 
