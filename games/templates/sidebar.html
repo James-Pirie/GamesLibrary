@@ -1,0 +1,24 @@
+<div class="sidebar">
+    <h2>Genres</h2>
+    <ul>
+        <div class="content">
+            {% if genre_name == None %}
+                <li><a class="selected" href="{{ url_for('games_bp.browse_games', genre_name=genre) }}">All Genres</a></li>
+            {% else %}
+                <li><a class="sidebar-item" href="{{ url_for('games_bp.browse_games', genre_name=genre) }}">All Genres</a></li>
+            {% endif %}
+
+            {% for genre in genre_data %}
+                {% if genre_name == genre %}
+                    <li><a class="selected" href="{{ url_for('games_bp.browse_games_by_genre', genre_name=genre) }}">{{ genre }}</a></li>
+
+                {% else %}
+                    <li><a class="sidebar-item" href="{{ url_for('games_bp.browse_games_by_genre', genre_name=genre) }}">{{ genre }}</a></li>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </ul>
+
+    <b class="upi">bdew314 | jpir453 | kshe912</b>
+
+</div>

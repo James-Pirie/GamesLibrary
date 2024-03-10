@@ -1,0 +1,18 @@
+<header>
+    <div class="header-content">
+        <a href="{{ url_for('home_bp.homepage') }}" class="header-link">Home</a>
+        <a href="{{ url_for('games_bp.browse_games', genre_name=genre) }}" class="header-link">All Games</a>
+        <a href="{{ url_for('reviews_bp.user_reviews')}}" class="header-link">Review</a>
+        <a href="{{ url_for('favourites_bp.users_favourites') }}" class="header-link">Favourites</a>
+        {% if 'username' in session %}
+            <a href="{{ url_for('userprofile_bp.userprofile') }}" class="header-link">User Profile</a>
+        {% endif %}
+    </div>
+    <div class="header-buttons">
+        {% if 'username' in session %}
+            <a href="{{ url_for('authentication_bp.logout') }}" class="authentication-button">Logout</a>
+        {% else %}
+            <a href="{{ url_for('authentication_bp.login') }}" class="authentication-button">Login</a>
+        {% endif %}
+    </div>
+</header>

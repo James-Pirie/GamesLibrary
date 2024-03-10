@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/main.css"/>
+    <title>Favourite Games</title>
+</head>
+
+<body>
+    <div class="background-favourites">
+        <div class="game-grid">
+            {% for game in favourite_games %}
+            <div class="game-item">
+                <a href="{{ url_for('description_bp.get_description_specific', game_id=game.game_id) }}">
+                    <img src="{{ game.image_url }}" alt="{{ game.name }}" />
+                </a>
+                <form method="post" action="{{ url_for('favourites_bp.process_form') }}">
+                    {{ form.csrf_token }}
+                    {{ form.hidden_tag() }}
+                    <input type="hidden" name="game_id" value="{{ game.game_id }}">
+                    <button class="remove-button">Remove</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% if not favourite_games %}
+    <div class="no-favourites-div">
+        Looks like you have no favourites.
+    </div>
+    {% endif %}
+
+    {% include "header.html" %}
+</body>
+</html>

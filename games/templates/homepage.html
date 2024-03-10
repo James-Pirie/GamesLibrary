@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<title>CS235 Game Library</title>
+	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+</head>
+
+<body>
+    <div id="home-page">
+        <div class="homepage-div">
+            <div class="homepage-container">
+
+            </div>
+
+
+        </div>
+
+        <div class="homepage-div">
+
+            <div class="discover-div">
+                <a href="{{ url_for('description_bp.get_description_specific', game_id=7940) }}">
+                    <img class="discover-image" src="../static/images/cod.jpg" alt="Portrait 1">
+                </a>
+
+                <a href="{{ url_for('description_bp.get_description_specific', game_id=1172470) }}">
+                  <img class="discover-image" src="../static/images/apex.jpg" alt="Portrait 2">
+                </a>
+
+                <a href="{{ url_for('description_bp.get_description_specific', game_id=1671200) }}">
+                  <img class="discover-image" src="../static/images/honkai.jpg" alt="Portrait 3">
+                </a>
+
+                <a href="{{ url_for('description_bp.get_description_specific', game_id=270880) }}">
+                  <img class="discover-image" src="../static/images/ats.jpg" alt="Portrait 2">
+                </a>
+
+                <a href="{{ url_for('description_bp.get_description_specific', game_id=11370) }}">
+                  <img class="discover-image" src="../static/images/nik.jpg" alt="Portrait 3">
+                </a>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    {% include "header.html" %}
+
+</body>
+</html>

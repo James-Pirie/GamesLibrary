@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ user.username }}'s Reviews</title>
+    <link rel="stylesheet" href="../static/css/main.css"/>
+
+</head>
+<body>
+    {{ user }}
+    <div class="all-reviews">
+        <div class="user-profile-reviews">
+            {% for review in reviews %}
+                <div class="game-reviews">
+                    <p class="game-rating-comment">{{ review.game.title }}</p>
+                    <form method="post" action="{{ url_for('reviews_bp.delete_review') }}">
+                        {{ form.csrf_token }}
+                        {{ form.hidden_tag() }}
+                        <input type="hidden" name="game_id" value='{{ review.game.game_id }}'>
+                        <button class="delete-review-button">Delete Review</button>
+                    </form>
+                    {% for i in range(1, 6) %}
+                        <span class="star {{ 'gold' if i <= review.rating else 'gray' }}"></span>
+                    {% endfor %}
+                    <p class="game-rating-comment">{{ review.comment }}</p>
+                </div>
+                {% if loop.index % 6 == 0 %}
+                    <br>
+                {% endif %}
+
+            {% endfor %}
+        </div>
+    </div>
+    {% if not reviews %}
+        <div class="no-favourites-div">
+            You have no reviews.
+        </div>
+    {% endif %}
+
+{% extends 'header.html' %}
+</body>
+</html>

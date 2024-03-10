@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="../static/css/main.css"/>
+    <link rel="stylesheet" href="../static/css/user-profile.css"/> <!-- Add a CSS file for user-profile styles -->
+</head>
+<body>
+    {% include "header.html" %}
+
+    <div class="user-profile-content">
+        <h1 class="user-profile-name">{{ username }}</h1>
+        <div>
+            <a href="{{ url_for('favourites_bp.users_favourites') }}">
+                <h2 class="user-profile-fav-games-title">Favourite Games</h2>
+            </a>
+        </div>
+        <div class="user-profile-games">
+            {% if fav_games %}
+                <a href="{{ url_for('description_bp.get_description_specific', game_id=fav_games[0].game_id) }}">
+                    <div class="user-profile-main-game">
+                        <img src="{{ fav_games[0].image_url }}" alt="{{ fav_games[0].title }}">
+                    </div>
+                </a>
+                <div class="user-profile-other-games">
+                    {% for game in fav_games[1:] %}
+                        <a href="{{ url_for('description_bp.get_description_specific', game_id=game.game_id) }}">
+                            <div class="user-profile-game">
+                                <img src="{{ game.image_url }}" alt="{{ game.title }}">
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="no-content-message">No favourite games yet</p>
+            {% endif %}
+        </div>
+
+        <a href="{{ url_for('reviews_bp.user_reviews')}}">
+            <h2 class="user-profile-reviews-title">Reviews</h2>
+        </a>
+        <div class="user-profile-reviews">
+            {% if reviews %}
+                {% for review in reviews %}
+                    <div class="user-profile-review">
+                        <p class="game-rating-title">{{ review.game.title }}</p>
+                        {% for i in range(1, 6) %}
+                            <span class="star {{ 'gold' if i <= review.rating else 'gray' }}"></span>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-reviews-message">No reviews yet</p>
+            {% endif %}
+        </div>
+
+
+    </div>
+</body>
+</html>

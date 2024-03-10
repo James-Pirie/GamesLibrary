@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Description</title>
+    <link rel="stylesheet" href="../static/css/main.css"/>
+</head>
+
+<body>
+    <div class="game-desc">
+
+    {% include "header.html" %}
+
+    {% include "sidebar.html" %}
+
+        <div class="game-desc-content">
+            <div class="game-title-div">
+                <p class="game-title">{{ game.title }} {{ average_rating }}</p>
+
+                    <div class="favourite-and-reviews">
+                        <form class="favourite-button-text" method="POST">
+                            {{ form.csrf_token }}
+                            {{ form.hidden_tag() }}
+                            <button class="favourite-button" type="submit">
+                                <div class="favourite-button-text">{{ message }}</div>
+                            </button>
+                        </form>
+
+                        <a href="{{ url_for('reviews_bp.game_reviews') }}" >
+                            <div class="favourite-button-text">
+                                <button class="favourite-button" type="submit">
+                                    <div class="favourite-button-text">Reviews</div>
+                                </button>
+                            </div>
+                        </a>
+
+                    </div>
+
+
+            </div>
+
+            <div class="image-and-description">
+                <div class="image-and-description-image">
+                    <img src="{{ game.image_url }}" alt="game image">
+                    <div class="info-div">
+                        <div class="info-text">
+                            <p>Published By: {{ game.publisher.publisher_name }}</p>
+                        </div>
+                    </div>
+                    <div class="info-div">
+                        <div class="info-text">
+                            <p>Release Date: {{ game.release_date }} </p>
+                        </div>
+                    </div>
+                    <div class="info-div">
+                        <div class="info-text">
+                            <p id="price">Price: {% if game.price == 0.0 %} Free {% else %} ${{ game.price }} {% endif %}</p>
+                        </div>
+                    </div>
+                    <div class="genre-div">
+                        <p class="info-text">
+                            {% for genre in game.genres %}
+                                {{ genre.genre_name }}{% if not loop.last %},{% endif %}
+                            {% endfor %}
+                        </p>
+                    </div>
+
+                </div>
+                <div class="game-description-div">
+                    <p id="game-description-text">{{ game.description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
